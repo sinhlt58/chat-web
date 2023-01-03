@@ -1,16 +1,27 @@
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+
+// styles
+import "./index.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+
+// store
+import { Provider } from "react-redux";
 import store from "./shared/store";
 
+// routes
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
+
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <RouterProvider router={router} />
   </Provider>
 );
 
