@@ -24,8 +24,6 @@ export const SideBarNav = () => {
           flexDirection: "column",
           gap: 1,
           p: 1,
-          overflow: "hidden",
-          height: "100%",
         }}
       >
         <Box>Conversations</Box>

@@ -43,6 +43,6 @@ export const RootLayout = () => {
           <Outlet />
         </Box>
       </Box>
-    </Box>
+    </Box >
   );
 };

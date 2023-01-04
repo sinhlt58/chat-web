@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useAppSettingContext } from "../../shared/context/AppSettingContext";
 
 export const HeadNav = () => {
-  const { themeMode, toggleThemeMode } = useAppSettingContext();
+  const { language, toggleLanguage, themeMode, toggleThemeMode } = useAppSettingContext();
 
   return (
     <Box
@@ -18,7 +18,9 @@ export const HeadNav = () => {
       <Typography>LOGO</Typography>
       <Box flexGrow={1}></Box>
       <Box display="flex" gap={2}>
-        <Typography>Language</Typography>
+        <Typography sx={{ cursor: "pointer" }} onClick={toggleLanguage}>
+          {language === "en" ? "Viet Nam" : "English"}
+        </Typography>
         <Typography sx={{ cursor: "pointer" }} onClick={toggleThemeMode}>
           {themeMode === "light" ? "Dark mode" : "Light mode"}
         </Typography>
