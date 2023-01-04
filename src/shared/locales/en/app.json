@@ -1,4 +1,10 @@
 {
   "textLangVi": "Vietnamese",
-  "textLangEn": "English"
+  "textLangEn": "English",
+  "textThemeModeDark": "Dark mode",
+  "textThemeModeLight": "Light mode",
+  "sideBar": {
+    "conversations": "Conversations",
+    "profile": "Profile"
+  }
 }

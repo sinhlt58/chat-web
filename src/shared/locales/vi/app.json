@@ -1,4 +1,10 @@
 {
   "textLangVi": "Tiếng Việt",
-  "textLangEn": "Tiếng Anh"
+  "textLangEn": "Tiếng Anh",
+  "textThemeModeDark": "Chế độ tối",
+  "textThemeModeLight": "Chế độ sáng",
+  "sideBar": {
+    "conversations": "Hội thoại",
+    "profile": "Hồ sơ"
+  }
 }

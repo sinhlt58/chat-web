@@ -2,7 +2,7 @@ import { createTheme, PaletteMode, ThemeProvider } from "@mui/material";
 import { createContext, useContext, useMemo, useState } from "react";
 import { LOCAL_STORAGE_LANGUAGE, LOCAL_STORAGE_THEME_MODE } from "../constant";
 import { createAppTheme } from "../theme/index";
-
+import i18n from "i18next";
 export interface AppSettingState {
   themeMode: PaletteMode;
   setThemeMode: (v: PaletteMode) => void;
@@ -25,7 +25,7 @@ export const AppSettingProvider = ({ children }: Props) => {
     return (savedThemeMode ? savedThemeMode : "light") as PaletteMode;
   });
   const [language, setLanguage] = useState(() => {
-    const savedLang = localStorage.getItem(LOCAL_STORAGE_LANGUAGE);
+    const savedLang = i18n.language;
     return savedLang ? savedLang : "en";
   });
 
@@ -42,7 +42,7 @@ export const AppSettingProvider = ({ children }: Props) => {
   const toggleLanguage = () => {
     const newLang = language === "en" ? "vi" : "en";
     setLanguage(newLang);
-    localStorage.setItem(LOCAL_STORAGE_LANGUAGE, newLang);
+    i18n.changeLanguage(newLang);
   }
 
   const value: AppSettingState = {

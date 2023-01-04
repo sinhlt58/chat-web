@@ -1,6 +1,9 @@
 import { Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export const SideBarNav = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -27,8 +30,8 @@ export const SideBarNav = () => {
           p: 1,
         }}
       >
-        <Box>Conversations</Box>
-        <Box>Profile</Box>
+        <Box>{t("app:sideBar.conversations")}</Box>
+        <Box>{t("app:sideBar.profile")}</Box>
       </Box>
 
     </Box>

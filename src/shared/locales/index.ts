@@ -10,8 +10,6 @@ export const resources = {
   vi,
 };
 
-console.log(Object.keys(en));
-
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
