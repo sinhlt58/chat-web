@@ -11,7 +11,7 @@ export const HeadNav = () => {
         alignItems: "center",
         paddingX: 2,
         height: "100%",
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         color: "text.primary",
       }}
     >

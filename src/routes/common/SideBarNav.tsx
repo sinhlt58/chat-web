@@ -16,6 +16,7 @@ export const SideBarNav = () => {
         bgcolor: "background.paper",
         color: "text.primary",
         borderRight: 1,
+        borderColor: "primary.dark"
       }}
     >
       <Box

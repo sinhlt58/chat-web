@@ -15,9 +15,10 @@ export const RootLayout = () => {
     >
       <Box
         sx={{
+          height: headNavHeight,
           color: "text.primary",
           borderBottom: borderWidth,
-          height: headNavHeight,
+          borderColor: "primary.dark",
         }}
       >
         <HeadNav />
@@ -33,7 +34,8 @@ export const RootLayout = () => {
           sx={{
             flexGrow: 1,
             height: "100%",
-            bgcolor: "pink",
+            bgcolor: "background.paper",
+            color: "text.primary",
             overflow: "hidden",
             "&:hover": {
               overflow: "auto",
