@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "./common/RootLayout";
 import { ErrorPage } from "./common/ErrorPage";
 import { IndexPage } from "./IndexPage/IndexPage";
@@ -6,29 +6,33 @@ import { ConversationsManagementPage } from "./ConversationsManagement/Conversat
 import { LoginPage } from "./common/LoginPage";
 import { PrivateRoute } from "./common/PrivateRoute";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        element: <PrivateRoute />,
-        errorElement: <ErrorPage />,
-        children: [
-          { index: true, element: <IndexPage /> },
-          {
-            path: "/conversations-management",
-            element: <ConversationsManagementPage />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-]);
+const AppRoutes = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          element: <PrivateRoute />,
+          errorElement: <ErrorPage />,
+          children: [
+            { index: true, element: <IndexPage /> },
+            {
+              path: "/conversations-management",
+              element: <ConversationsManagementPage />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+  ]);
 
-export default router;
+  return <RouterProvider router={router} />;
+};
+
+export default AppRoutes;
