@@ -5,7 +5,8 @@ import { useAppSettingContext } from "../../shared/context/AppSettingContext";
 export const HeadNav = () => {
   const { t } = useTranslation();
 
-  const { language, toggleLanguage, themeMode, toggleThemeMode } = useAppSettingContext();
+  const { language, toggleLanguage, themeMode, toggleThemeMode } =
+    useAppSettingContext();
 
   return (
     <Box
@@ -25,7 +26,9 @@ export const HeadNav = () => {
           {language === "en" ? t("app:textLangVi") : t("app:textLangEn")}
         </Typography>
         <Typography sx={{ cursor: "pointer" }} onClick={toggleThemeMode}>
-          {themeMode === "dark" ? t("app:textThemeModeLight") : t("app:textThemeModeDark")}
+          {themeMode === "dark"
+            ? t("app:textThemeModeLight")
+            : t("app:textThemeModeDark")}
         </Typography>
         <Typography>Avatar</Typography>
       </Box>

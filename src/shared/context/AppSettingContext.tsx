@@ -1,6 +1,6 @@
 import { createTheme, PaletteMode, ThemeProvider } from "@mui/material";
 import { createContext, useContext, useMemo, useState } from "react";
-import { LOCAL_STORAGE_LANGUAGE, LOCAL_STORAGE_THEME_MODE } from "../constant";
+import { LOCAL_STORAGE_THEME_MODE } from "../constant";
 import { createAppTheme } from "../theme/index";
 import i18n from "i18next";
 export interface AppSettingState {
@@ -37,13 +37,13 @@ export const AppSettingProvider = ({ children }: Props) => {
     const newMode = themeMode === "light" ? "dark" : "light";
     setThemeMode(newMode);
     localStorage.setItem(LOCAL_STORAGE_THEME_MODE, newMode);
-  }
+  };
 
   const toggleLanguage = () => {
     const newLang = language === "en" ? "vi" : "en";
     setLanguage(newLang);
     i18n.changeLanguage(newLang);
-  }
+  };
 
   const value: AppSettingState = {
     themeMode,
