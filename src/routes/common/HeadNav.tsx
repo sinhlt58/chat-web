@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useAppSettingContext } from "../../shared/context/AppSettingContext";
 
 export const HeadNav = () => {
+  const { t } = useTranslation();
+
   const { language, toggleLanguage, themeMode, toggleThemeMode } = useAppSettingContext();
 
   return (
@@ -19,7 +22,7 @@ export const HeadNav = () => {
       <Box flexGrow={1}></Box>
       <Box display="flex" gap={2}>
         <Typography sx={{ cursor: "pointer" }} onClick={toggleLanguage}>
-          {language === "en" ? "Viet Nam" : "English"}
+          {language === "en" ? t("app:textLangVi") : t("app:textLangEn")}
         </Typography>
         <Typography sx={{ cursor: "pointer" }} onClick={toggleThemeMode}>
           {themeMode === "light" ? "Dark mode" : "Light mode"}
