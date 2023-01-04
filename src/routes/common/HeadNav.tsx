@@ -25,7 +25,7 @@ export const HeadNav = () => {
           {language === "en" ? t("app:textLangVi") : t("app:textLangEn")}
         </Typography>
         <Typography sx={{ cursor: "pointer" }} onClick={toggleThemeMode}>
-          {themeMode === "light" ? t("app:textThemeModeLight") : t("app:textThemeModeDark")}
+          {themeMode === "dark" ? t("app:textThemeModeLight") : t("app:textThemeModeDark")}
         </Typography>
         <Typography>Avatar</Typography>
       </Box>
