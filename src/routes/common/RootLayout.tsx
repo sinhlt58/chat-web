@@ -3,7 +3,8 @@ import { Outlet } from "react-router-dom";
 import { HeadNav } from "./HeadNav";
 import { SideBarNav } from "./SideBarNav";
 
-const headNavHeight = "46px";
+const headNavHeight = 50;
+const borderWidth = 1;
 
 export const RootLayout = () => {
   return (
@@ -12,13 +13,19 @@ export const RootLayout = () => {
         height: "100vh",
       }}
     >
-      <Box height={headNavHeight}>
+      <Box
+        sx={{
+          color: "text.primary",
+          borderBottom: borderWidth,
+          height: headNavHeight,
+        }}
+      >
         <HeadNav />
       </Box>
       <Box
         sx={{
           display: "flex",
-          height: `calc(100vh - ${headNavHeight})`,
+          height: `calc(100vh - ${headNavHeight + borderWidth}px)`,
         }}
       >
         <SideBarNav />

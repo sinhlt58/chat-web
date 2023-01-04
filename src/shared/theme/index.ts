@@ -1,25 +1,23 @@
 import { PaletteMode, ThemeOptions } from "@mui/material";
-
+import { purple } from "@mui/material/colors";
 
 export const createAppTheme = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
-    ...(mode === 'light'
+    ...(mode === "light"
       ? {
           // palette values for light mode
-          
         }
       : {
           // palette values for dark mode
         }),
   },
   senme: {
-    customColor1: "#000000",
-  }
+    customColor1: purple[500],
+  },
 });
 
-
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface Theme {
     senme: {
       customColor1: string;

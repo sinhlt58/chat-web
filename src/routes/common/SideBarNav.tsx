@@ -6,30 +6,32 @@ export const SideBarNav = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        gap: 1,
         overflow: "hidden",
-        width: 70,
         height: "100%",
         backgroundColor: "blue",
         "&:hover": {
           overflowY: "auto",
         },
+        bgcolor: "background.paper",
+        color: "text.primary",
+        borderRight: 1,
       }}
     >
-      <Box>LOGO</Box>
-      <Box>Conver</Box>
-      <Box>Profile</Box>
-      <Box>LOGO</Box>
-      <Box>Conver</Box>
-      <Box>Profile</Box>
-      <Box>LOGO</Box>
-      <Box>Conver</Box>
-      <Box>Profile</Box>
-      <Box>LOGO</Box>
-      <Box>Conver</Box>
-      <Box>Profile</Box>
-      <Box>LOGO</Box>
-      <Box>Conver</Box>
-      <Box>Profile</Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 1,
+          p: 1,
+          overflow: "hidden",
+          height: "100%",
+        }}
+      >
+        <Box>Conversations</Box>
+        <Box>Profile</Box>
+      </Box>
+
     </Box>
   );
 };

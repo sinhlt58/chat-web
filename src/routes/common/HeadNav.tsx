@@ -1,22 +1,28 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { useAppSettingContext } from "../../shared/context/AppSettingContext";
 
 export const HeadNav = () => {
+  const { themeMode, toggleThemeMode } = useAppSettingContext();
+
   return (
     <Box
-      display="flex"
-      paddingX={2}
-      height="100%"
-      style={{
-        backgroundColor: "green",
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        paddingX: 2,
+        height: "100%",
+        bgcolor: "background.default",
+        color: "text.primary",
       }}
-      alignItems="center"
     >
-      <Box>LOGO</Box>
+      <Typography>LOGO</Typography>
       <Box flexGrow={1}></Box>
       <Box display="flex" gap={2}>
-        <Box>Language</Box>
-        <Box>Dark mode</Box>
-        <Box>Avatar</Box>
+        <Typography>Language</Typography>
+        <Typography sx={{ cursor: "pointer" }} onClick={toggleThemeMode}>
+          {themeMode === "light" ? "Dark mode" : "Light mode"}
+        </Typography>
+        <Typography>Avatar</Typography>
       </Box>
     </Box>
   );

@@ -7,6 +7,7 @@ export interface AppSettingState {
   setThemeMode: (v: PaletteMode) => void;
   language: string;
   setLanguage: (v: string) => void;
+  toggleThemeMode: () => void;
 }
 
 export const AppSettingContext = createContext({} as AppSettingState);
@@ -17,18 +18,28 @@ interface Props {
   children: React.ReactNode | React.ReactNode[];
 }
 export const AppSettingProvider = ({ children }: Props) => {
-  const [themeMode, setThemeMode] = useState<PaletteMode>("light");
+  const [themeMode, setThemeMode] = useState<PaletteMode>(() => {
+    const savedThemeMode = localStorage.getItem("themeMode");
+    return (savedThemeMode ? savedThemeMode : "light") as PaletteMode;
+  });
   const [language, setLanguage] = useState("en");
 
   const theme = useMemo(() => {
     return createTheme(createAppTheme(themeMode));
   }, [themeMode]);
 
+  const toggleThemeMode = () => {
+    const newMode = themeMode === "light" ? "dark" : "light";
+    setThemeMode(newMode);
+    localStorage.setItem("themeMode", newMode);
+  }
+
   const value: AppSettingState = {
     themeMode,
     setThemeMode,
     language,
     setLanguage,
+    toggleThemeMode,
   };
 
   return (
