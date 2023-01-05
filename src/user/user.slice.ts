@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ModelUser } from "../shared/models/user";
+import { User } from "../shared/models/user";
+import { RootState } from "../shared/store";
 
 export interface StateUser {
-  user: ModelUser;
+  user: User;
   loginError?: string;
 }
 
@@ -16,7 +17,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginSuccess: (state, { payload }: PayloadAction<{ user: ModelUser }>) => {
+    loginSuccess: (state, { payload }: PayloadAction<{ user: User }>) => {
       state.user = payload.user;
     },
     loginError: (state, { payload }: PayloadAction<string>) => {
@@ -33,5 +34,10 @@ export const loginAsync = createAsyncThunk(
     // request here
   }
 );
+
+// selectors
+export const selectUser = (state: RootState) => {
+  return state.user.user;
+};
 
 export default userSlice.reducer;

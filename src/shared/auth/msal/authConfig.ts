@@ -43,7 +43,7 @@ export const msalConfig = {
   },
   system: {
     loggerOptions: {
-      loggerCallback: (level, message, containsPii) => {
+      loggerCallback: (level: any, message: any, containsPii: any) => {
         if (containsPii) {
           return;
         }
@@ -73,7 +73,7 @@ export const msalConfig = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const protectedResources = {
-  apiTodoList: {
+  senmeAPI: {
     endpoint: "http://localhost:5000/api/todolist",
     scopes: {
       read: ["https://sinhblack.onmicrosoft.com/senme-api-local/senme.read"],
@@ -90,7 +90,7 @@ export const protectedResources = {
  */
 export const loginRequest = {
   scopes: [
-    ...protectedResources.apiTodoList.scopes.read,
-    ...protectedResources.apiTodoList.scopes.write,
+    ...protectedResources.senmeAPI.scopes.read,
+    ...protectedResources.senmeAPI.scopes.write,
   ],
 };

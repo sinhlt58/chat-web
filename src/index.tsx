@@ -9,13 +9,25 @@ import store from "./shared/store";
 import "./shared/locales";
 
 import { App } from "./App";
+import { REQUIRED_AUTH, USE_MSAL } from "./shared/constant";
+import { MsalProvider } from "@azure/msal-react";
+import { msalInstance } from "./shared/auth/msal";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <App />
+    {
+      USE_MSAL &&
+      <MsalProvider instance={msalInstance}>
+        <App />
+      </MsalProvider>
+    }
+    {
+      !REQUIRED_AUTH &&
+      <App />
+    }
   </Provider>
 );
 

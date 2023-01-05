@@ -1,12 +1,23 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { msalInstance } from "../../shared/auth/msal";
+import { USE_MSAL } from "../../shared/constant";
 import { useAppSettingContext } from "../../shared/context/AppSettingContext";
+import { useAppSelector } from "../../shared/store/hooks";
+import { selectUser } from "../../user/user.slice";
 
 export const HeadNav = () => {
   const { t } = useTranslation();
+  const user = useAppSelector(selectUser);
 
   const { language, toggleLanguage, themeMode, toggleThemeMode } =
     useAppSettingContext();
+
+  const handleClickName = () => {
+    if (USE_MSAL) {
+      msalInstance.logoutRedirect();
+    }
+  }
 
   return (
     <Box
@@ -30,7 +41,7 @@ export const HeadNav = () => {
             ? t("app:textThemeModeLight")
             : t("app:textThemeModeDark")}
         </Typography>
-        <Typography>Avatar</Typography>
+        <Typography sx={{ cursor: "pointer" }} onClick={handleClickName}>{user.name}</Typography>
       </Box>
     </Box>
   );

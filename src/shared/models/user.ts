@@ -1,3 +1,3 @@
-export interface ModelUser {
+export interface User {
   name: string;
 }
