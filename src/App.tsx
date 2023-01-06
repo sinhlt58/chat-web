@@ -12,12 +12,13 @@ import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { useEffect, useMemo } from "react";
 import { USE_MSAL } from "./shared/constant";
 import { msalInstance } from "./shared/auth/msal";
-import { useAppDispatch } from "./shared/store/hooks";
-import { loginSuccess } from "./user/user.slice";
+import { useAppDispatch, useAppSelector } from "./shared/store/hooks";
+import { loadUserProfileAsync, selectIsUserProfileLoaded, setUser } from "./user/user.slice";
 import { InteractionStatus } from "@azure/msal-browser";
 
 export const App = () => {
   const dispatch = useAppDispatch();
+  const isUserProfileLoaded = useAppSelector(selectIsUserProfileLoaded);
 
   // msal
   const { inProgress } = useMsal();
@@ -36,16 +37,14 @@ export const App = () => {
     if (inProgress !== InteractionStatus.None) return;
 
     if (isAuthenticated) {
-      // set user info
+      // load user profile after getting the accessToken
       if (USE_MSAL) {
         const accountInfo = msalInstance.getActiveAccount();
         if (accountInfo) {
-          // call mapper to User model later
-          dispatch(loginSuccess({ user: { name: accountInfo.name || "Admin" } }));
+          dispatch(loadUserProfileAsync());
         }
       } else {
-        // call mapper to User model later
-        dispatch(loginSuccess({ user: { name: "Admin" } }));
+        dispatch(setUser({ name: "Admin" }));
       }
     } else {
       if (USE_MSAL && !msalInstance.getActiveAccount()) {
@@ -54,7 +53,11 @@ export const App = () => {
     }
   }, [isAuthenticated, inProgress, dispatch]);
 
-  if (!isAuthenticated) return null;
+  console.log(isUserProfileLoaded);
+
+  // Here we wait for the user profile is loaded then we render the app
+  // because we need to get some info like roles to render the app correctly
+  if (!isAuthenticated || !isUserProfileLoaded) return null;
 
   return (
     <AppSettingProvider>

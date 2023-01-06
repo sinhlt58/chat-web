@@ -7,3 +7,10 @@ export const REQUIRED_AUTH = USE_MSAL;
 
 export const LOCAL_STORAGE_THEME_MODE = "themeMode";
 export const LOCAL_STORAGE_LANGUAGE = "language";
+
+// service urls
+export const BASE_URL_PERSON_SERVICE =
+  process.env.REACT_APP_BASE_URL_PERSON_SERVICE || "";
+
+export const BASE_URL_CHATBOT_SERVICE =
+  process.env.REACT_APP_BASE_URL_CHATBOT_SERVICE || "";
