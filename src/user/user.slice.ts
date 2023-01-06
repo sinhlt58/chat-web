@@ -11,7 +11,8 @@ export interface StateUser {
 
 const initialState: StateUser = {
   user: {
-    name: "Admin",
+    name: "",
+    roles: [],
   },
   isProfileLoaded: false,
 };
@@ -23,7 +24,7 @@ export const loadUserProfileAsync = createAsyncThunk(
   async () => {
     // TODO: call api and get response and map to User later
     await personApi.getUserProfile();
-    const user: User = { name: "Test Admin" };
+    const user: Partial<User> = { roles: ["ADMIN"] };
     return user;
   }
 );
@@ -39,6 +40,9 @@ export const userSlice = createSlice({
     setUser: (state, { payload }: PayloadAction<User>) => {
       state.user = payload;
     },
+    setUserPartial: (state, { payload }: PayloadAction<Partial<User>>) => {
+      state.user = { ...state.user, ...payload };
+    },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -46,13 +50,14 @@ export const userSlice = createSlice({
       state.isProfileLoaded = false;
     });
     builder.addCase(loadUserProfileAsync.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.user = { ...state.user, ...action.payload };
       state.isProfileLoaded = true;
     });
   },
 });
 
-export const { setIsUserProfileLoaded, setUser } = userSlice.actions;
+export const { setIsUserProfileLoaded, setUser, setUserPartial } =
+  userSlice.actions;
 
 // selectors
 export const selectUser = (state: RootState) => {

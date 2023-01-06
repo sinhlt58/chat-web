@@ -13,7 +13,7 @@ import { useEffect, useMemo } from "react";
 import { USE_MSAL } from "./shared/constant";
 import { msalInstance } from "./shared/auth/msal";
 import { useAppDispatch, useAppSelector } from "./shared/store/hooks";
-import { loadUserProfileAsync, selectIsUserProfileLoaded, setUser } from "./user/user.slice";
+import { loadUserProfileAsync, selectIsUserProfileLoaded, setUser, setUserPartial } from "./user/user.slice";
 import { InteractionStatus } from "@azure/msal-browser";
 
 export const App = () => {
@@ -41,10 +41,11 @@ export const App = () => {
       if (USE_MSAL) {
         const accountInfo = msalInstance.getActiveAccount();
         if (accountInfo) {
+          dispatch(setUserPartial({ name: accountInfo.name || "Test Admin" }));
           dispatch(loadUserProfileAsync());
         }
       } else {
-        dispatch(setUser({ name: "Admin" }));
+        dispatch(setUser({ name: "Admin", roles: ["ADMIN"] }));
       }
     } else {
       if (USE_MSAL && !msalInstance.getActiveAccount()) {
