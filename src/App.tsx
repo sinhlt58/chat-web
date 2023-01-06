@@ -53,8 +53,6 @@ export const App = () => {
     }
   }, [isAuthenticated, inProgress, dispatch]);
 
-  console.log(isUserProfileLoaded);
-
   // Here we wait for the user profile is loaded then we render the app
   // because we need to get some info like roles to render the app correctly
   if (!isAuthenticated || !isUserProfileLoaded) return null;
